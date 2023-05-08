@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/edittext_border">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/text_dataUserID"
+            android:text="ID :"
+            android:textSize="15sp"
+            android:textColor="@color/Purple800"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_dataUserID"
+            android:hint="00"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/Purple800"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="2dp"
+        android:layout_marginHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/text_dataUserName"
+            android:text="Name :"
+            android:textSize="15sp"
+            android:textColor="@color/Purple700"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_dataUserName"
+            android:hint="Sample"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/Purple700"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/text_dataUserAge"
+            android:text="Age :"
+            android:textSize="15sp"
+            android:textColor="@color/Indigo800"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_dataUserAge"
+            android:hint="00"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/Indigo800"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

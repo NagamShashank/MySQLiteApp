@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/edittext_border">
+
+            <EditText
+                android:id="@+id/Name_Edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:hint="Enter Name"
+                android:maxLength="20"
+                android:maxLines="2"
+                android:digits="QWERTYUIOPASDFGHJKLZXCVBNM "
+                android:layout_marginHorizontal="15dp"
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/grey_light"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/edittext_border">
+
+        <EditText
+            android:id="@+id/Age_Edittext"
+            android:layout_below="@+id/Name_Edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:hint="Enter Age"
+            android:maxLength="4"
+            android:digits="1234567890"
+            android:backgroundTint="@color/white"
+            android:layout_marginHorizontal="15dp"
+            android:textColorHint="@color/grey_light"/>
+
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/saveData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Data"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ReadData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read Data"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        android:layout_below="@id/layoutEdittext"
+        android:layout_centerHorizontal="true"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/DataRecyclerView"
+        android:layout_below="@+id/ReadData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+</RelativeLayout>
