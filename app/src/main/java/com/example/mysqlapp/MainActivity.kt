@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
 
         val dpList = dbHelper.getAllUsers()
 
-
         val entered_Name = binding.NameEdittext.text.toString()
         val entered_Age = binding.AgeEdittext.text.toString()
 
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             val newage = entered_Age.toInt()
             val id = MyModel.getAutoId()
 
-           
+
 
 
             val data = MyModel(id, entered_Name, newage)
