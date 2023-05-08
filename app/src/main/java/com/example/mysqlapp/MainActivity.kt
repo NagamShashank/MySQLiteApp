@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         binding.DataRecyclerView.adapter = adapter
 
     }
-
     private fun addData() {
 
         val dpList = dbHelper.getAllUsers()
