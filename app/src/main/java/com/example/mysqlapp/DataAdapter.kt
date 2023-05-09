@@ -1,7 +1,9 @@
 package com.example.mysqlapp
 
+import android.content.ClipData.Item
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mysqlapp.databinding.DataDisplayItemlayoutBinding
@@ -15,9 +17,22 @@ class DataAdapter(val context: Context, val dataList: ArrayList<MyModel>):Recycl
     }
 
     override fun onBindViewHolder(holder: MyView, position: Int) {
-        holder.itemLayoutBinding.textViewDataUserID.text = dataList[position].Id.toString()
-        holder.itemLayoutBinding.textViewDataUserName.text = dataList[position].Name
-        holder.itemLayoutBinding.textViewDataUserAge.text = dataList[position].Age.toString()
+        val item = dataList[position]
+        holder.itemLayoutBinding.textViewDataUserID.text = item.Id.toString()
+        holder.itemLayoutBinding.textViewDataUserName.text = item.Name
+        holder.itemLayoutBinding.textViewDataUserAge.text = item.Age.toString()
+
+        holder.itemLayoutBinding.updateDataBtn.setOnClickListener(View.OnClickListener {
+            if(context is MainActivity){
+                context.updateRecordDialog(item)
+            }
+        })
+
+        holder.itemLayoutBinding.deleteDataBtn.setOnClickListener(View.OnClickListener {
+            if(context is MainActivity){
+                context.deleteRecordDialog(item)
+            }
+        })
     }
 
     override fun getItemCount(): Int {

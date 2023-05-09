@@ -77,26 +77,43 @@
             android:layout_marginVertical="20dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/ReadData"
+    <LinearLayout
+        android:id="@+id/layout_read_update"
+        android:layout_below="@+id/layoutEdittext"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Read Data"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginVertical="20dp"
-        android:layout_below="@id/layoutEdittext"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true">
 
+        <Button
+            android:id="@+id/ReadData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read Data"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/UpdateData"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Update Data"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginVertical="20dp"-->
+<!--            android:layout_marginHorizontal="10dp"/>-->
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
         android:id="@+id/DataRecyclerView"
-        android:layout_below="@+id/ReadData"
+        android:layout_below="@+id/layout_read_update"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
 
 </RelativeLayout>

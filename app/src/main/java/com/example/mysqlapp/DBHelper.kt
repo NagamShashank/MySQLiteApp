@@ -16,11 +16,9 @@ val COL_ID = "id"
 
 class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,null,1) {
 
-    private val createTable = "CREATE TABLE $TABLENAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_NAME VARCHAR(256),$COL_AGE INTEGER )"
-
+    private val createTable = "CREATE TABLE $TABLENAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_NAME  VARCHAR(256),$COL_AGE INTEGER )"
 
     override fun onCreate(db: SQLiteDatabase?) {
-
         db?.execSQL(createTable)
     }
 
@@ -29,26 +27,21 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         db?.execSQL(createTable)
     }
 
-//    fun insertData(UserName : String, UserAge : Int) : Long{
-//
-//        val db2 = this.writableDatabase
-//        val contentValues = ContentValues()
-//        contentValues.put(COL_NAME,UserName)
-//        contentValues.put(COL_AGE,UserAge)
-//
-//        val success = db2.insert(TABLENAME,null,contentValues)
-//        db2.close()
-//        return success
-//    }
+
 
     fun insertData(model : MyModel) : Long{
 
+//        val cur : Cursor?
+//        val checkName = model.Name
         val db2 = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COL_NAME,model.Name)
         contentValues.put(COL_AGE,model.Age)
+        //val checkQuery = "SELECT * FROM $TABLENAME WHERE $COL_NAME = $checkName "
+        //cur = db2.rawQuery(checkQuery,null)
 
         val success = db2.insert(TABLENAME,null,contentValues)
+        //val success = db2.insertWithOnConflict(TABLENAME,null,contentValues,SQLiteDatabase.CONFLICT_IGNORE)
         db2.close()
         return success
     }
@@ -85,6 +78,28 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         }
 
         return userList
+    }
+
+
+    fun getUpdatedData(updateModel : MyModel):Int{
+        val updateDB = this.writableDatabase
+        val ctValues = ContentValues()
+        ctValues.put(COL_NAME,updateModel.Name)
+        ctValues.put(COL_AGE,updateModel.Age)
+        val updateSuccess = updateDB.update(TABLENAME,ctValues, COL_ID + "=" +updateModel.Id,null)
+        updateDB.close()
+        return updateSuccess
+    }
+
+    fun getDeleteData(deleteModel : MyModel):Int{
+        val deleteDB = this.writableDatabase
+        val deleteCTValues = ContentValues()
+        deleteCTValues.put(COL_NAME,deleteModel.Name)
+        deleteCTValues.put(COL_AGE,deleteModel.Age)
+        val deleteSuccess = deleteDB.delete(TABLENAME, deleteCTValues.toString(),
+            arrayOf(COL_ID + "=" + deleteModel.Id))
+        deleteDB.close()
+        return deleteSuccess
     }
 
 }

@@ -5,7 +5,8 @@ import kotlin.random.Random
 data class MyModel(
     val Id: Int? = getAutoId(),
     val Name: String,
-    val Age: Int) {
+    val Age: Int?
+) {
 
     companion object{
         fun getAutoId():Int{
