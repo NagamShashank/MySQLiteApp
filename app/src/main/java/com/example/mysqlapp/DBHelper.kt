@@ -27,18 +27,12 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         db?.execSQL(createTable)
     }
 
-
-
     fun insertData(model : MyModel) : Long{
 
-//        val cur : Cursor?
-//        val checkName = model.Name
         val db2 = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COL_NAME,model.Name)
         contentValues.put(COL_AGE,model.Age)
-        //val checkQuery = "SELECT * FROM $TABLENAME WHERE $COL_NAME = $checkName "
-        //cur = db2.rawQuery(checkQuery,null)
 
         val success = db2.insert(TABLENAME,null,contentValues)
         //val success = db2.insertWithOnConflict(TABLENAME,null,contentValues,SQLiteDatabase.CONFLICT_IGNORE)
@@ -91,15 +85,14 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         return updateSuccess
     }
 
+
     fun getDeleteData(deleteModel : MyModel):Int{
         val deleteDB = this.writableDatabase
         val deleteCTValues = ContentValues()
         deleteCTValues.put(COL_NAME,deleteModel.Name)
         deleteCTValues.put(COL_AGE,deleteModel.Age)
-        val deleteSuccess = deleteDB.delete(TABLENAME, deleteCTValues.toString(),
-            arrayOf(COL_ID + "=" + deleteModel.Id))
+        val deleteSuccess = deleteDB.delete(TABLENAME, COL_ID + "=" + deleteModel.Id,null)
         deleteDB.close()
         return deleteSuccess
     }
-
 }

@@ -12,11 +12,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mysqlapp.databinding.ActivityMainBinding
+import com.example.mysqlapp.databinding.DialogUpdateBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var dbHelper: DBHelper
     private  var adapter : DataAdapter ? = null
+
+    private lateinit var dialogBinding : DialogUpdateBinding
 
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun addData() {
 
-        val dpList = dbHelper.getAllUsers()
+        //val dpList = dbHelper.getAllUsers()
 
         val entered_Name = binding.NameEdittext.text.toString()
         val entered_Age = binding.AgeEdittext.text.toString()
@@ -72,7 +75,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     fun updateRecordDialog(updateRecModel : MyModel){
         val builder = AlertDialog.Builder(this)
@@ -105,47 +107,39 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Data not Updated", Toast.LENGTH_SHORT).show()
                 }
-
             }
         }
 
         cancelBtn.setOnClickListener {
             alertdialog.dismiss()
         }
-
         alertdialog.show()
-
-
-
     }
-
 
     fun deleteRecordDialog(deleteRecModel : MyModel){
         val deleteBuilder = AlertDialog.Builder(this)
-        val delAlertDialog = deleteBuilder.create()
+
         deleteBuilder.setTitle("Delete Record")
-        deleteBuilder.setMessage("Are you should you want to delete \n Name : ${deleteRecModel.Name} \n Age : ${deleteRecModel.Age}")
-        deleteBuilder.setIcon(android.R.drawable.ic_dialog_alert)
-        deleteBuilder.setPositiveButton("Yes"){ DialogInterface, which ->
-            val myDeleteData = MyModel(deleteRecModel.Id,"",null)
+        deleteBuilder.setMessage("Are You Sure You Want To Delete \nName : ${deleteRecModel.Name} \nAge : ${deleteRecModel.Age}")
+        deleteBuilder.setIcon(R.drawable.alert_dialog_icon)
+        deleteBuilder.setPositiveButton("Yes"){ Dialoginterface, which ->
+            val myDeleteData = MyModel(deleteRecModel.Id,deleteRecModel.Name,deleteRecModel.Age)
             val deleteStatus = dbHelper.getDeleteData(myDeleteData)
 
             if(deleteStatus > -1){
                 Toast.makeText(this, "Data Deleted Successfully", Toast.LENGTH_SHORT).show()
-                getData()
-                delAlertDialog.dismiss()
+                //getData()
+                //delAlertDialog.dismiss()
             }else{
                 Toast.makeText(this, "Fail To Delete The Data", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         deleteBuilder.setNegativeButton("No"){ DialogInterface, which ->
-            delAlertDialog.dismiss()
+           // delAlertDialog.dismiss()
         }
+        val delAlertDialog = deleteBuilder.create()
         delAlertDialog.show()
     }
-
-
 
 }

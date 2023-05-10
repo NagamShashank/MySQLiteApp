@@ -22,17 +22,17 @@ class DataAdapter(val context: Context, val dataList: ArrayList<MyModel>):Recycl
         holder.itemLayoutBinding.textViewDataUserName.text = item.Name
         holder.itemLayoutBinding.textViewDataUserAge.text = item.Age.toString()
 
-        holder.itemLayoutBinding.updateDataBtn.setOnClickListener(View.OnClickListener {
-            if(context is MainActivity){
+        holder.itemLayoutBinding.updateDataBtn.setOnClickListener {
+            if (context is MainActivity) {
                 context.updateRecordDialog(item)
             }
-        })
+        }
 
-        holder.itemLayoutBinding.deleteDataBtn.setOnClickListener(View.OnClickListener {
-            if(context is MainActivity){
+        holder.itemLayoutBinding.deleteDataBtn.setOnClickListener {
+            if (context is MainActivity) {
                 context.deleteRecordDialog(item)
             }
-        })
+        }
     }
 
     override fun getItemCount(): Int {
