@@ -39,7 +39,6 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         db2.close()
         return success
     }
-
     @SuppressLint("Range")
     fun getAllUsers() : ArrayList<MyModel> {
         val userList : ArrayList<MyModel> = ArrayList()
