@@ -34,11 +34,13 @@ class DBHelper(var context : Context) : SQLiteOpenHelper(context, DATABASENAME,n
         contentValues.put(COL_NAME,model.Name)
         contentValues.put(COL_AGE,model.Age)
 
+       // val checkQuery = "SELECT * FROM $TABLENAME WHERE $COL_NAME "
         val success = db2.insert(TABLENAME,null,contentValues)
         //val success = db2.insertWithOnConflict(TABLENAME,null,contentValues,SQLiteDatabase.CONFLICT_IGNORE)
         db2.close()
         return success
     }
+
     @SuppressLint("Range")
     fun getAllUsers() : ArrayList<MyModel> {
         val userList : ArrayList<MyModel> = ArrayList()

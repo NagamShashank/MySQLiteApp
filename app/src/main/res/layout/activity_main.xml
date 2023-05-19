@@ -110,7 +110,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/DataRecyclerView"
         android:layout_below="@+id/layout_read_update"
         android:layout_width="match_parent"

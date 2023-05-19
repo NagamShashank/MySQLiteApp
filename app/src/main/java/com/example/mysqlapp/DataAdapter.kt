@@ -28,6 +28,12 @@ class DataAdapter(val context: Context, val dataList: ArrayList<MyModel>):Recycl
             }
         }
 
+
+            dataList?.let {
+
+            }
+
+
         holder.itemLayoutBinding.deleteDataBtn.setOnClickListener {
             if (context is MainActivity) {
                 context.deleteRecordDialog(item)

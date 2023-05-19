@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -18,8 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var dbHelper: DBHelper
     private  var adapter : DataAdapter ? = null
-
-    private lateinit var dialogBinding : DialogUpdateBinding
 
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -41,38 +40,52 @@ class MainActivity : AppCompatActivity() {
 
         binding.DataRecyclerView.layoutManager = LinearLayoutManager(this)
 
+
+
     }
 
     private fun getData() {
         val List = dbHelper.getAllUsers()
         Log.e("pppp","$List")
+
         adapter = DataAdapter(this,List)
         binding.DataRecyclerView.adapter = adapter
 
     }
     private fun addData() {
 
-        //val dpList = dbHelper.getAllUsers()
+        val dpList = dbHelper.getAllUsers()
 
-        val entered_Name = binding.NameEdittext.text.toString()
-        val entered_Age = binding.AgeEdittext.text.toString()
+        val enteredName = binding.NameEdittext.text.toString().trim()
+        val enteredAge = binding.AgeEdittext.text.toString().trim()
 
-        if(entered_Name.isEmpty() && entered_Age.isEmpty()){
+        if(enteredName.isEmpty() && enteredAge.isEmpty()){
             Toast.makeText(this,"Please enter the all Fields",Toast.LENGTH_SHORT).show()
         } else {
-            val newage = entered_Age.toInt()
+            val newage = enteredAge.toInt()
             val id = MyModel.getAutoId()
-            val mydata = MyModel(id, entered_Name, newage)
+            val mydata = MyModel(id, enteredName, newage)
 
-            val status = dbHelper.insertData(mydata)
-            if (status > -1){
-                Toast.makeText(this,"User Added",Toast.LENGTH_SHORT).show()
-                //getData()
-                binding.NameEdittext.setText("")
-                binding.AgeEdittext.setText("")
-            }else{
-                Toast.makeText(this,"User Not Added",Toast.LENGTH_SHORT).show()
+            for(data in dpList){
+                if(data.Name == enteredName){
+                    Toast.makeText(this,"Data With Same Content Already Exists",Toast.LENGTH_SHORT).show()
+                    break
+                }else{
+                    val status = dbHelper.insertData(mydata)
+
+                    if (status > -1){
+                        Toast.makeText(this,"User Added",Toast.LENGTH_SHORT).show()
+                        //getData()
+                        binding.NameEdittext.setText("")
+                        binding.AgeEdittext.setText("")
+                    }else{
+                        Toast.makeText(this,"User Not Added",Toast.LENGTH_SHORT).show()
+                    }
+                    break
+
+                }
             }
+
         }
     }
 
@@ -128,7 +141,7 @@ class MainActivity : AppCompatActivity() {
 
             if(deleteStatus > -1){
                 Toast.makeText(this, "Data Deleted Successfully", Toast.LENGTH_SHORT).show()
-                //getData()
+                getData()
                 //delAlertDialog.dismiss()
             }else{
                 Toast.makeText(this, "Fail To Delete The Data", Toast.LENGTH_SHORT).show()
@@ -141,5 +154,7 @@ class MainActivity : AppCompatActivity() {
         val delAlertDialog = deleteBuilder.create()
         delAlertDialog.show()
     }
+
+
 
 }
